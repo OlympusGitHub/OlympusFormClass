@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DAE8294162C509C00CEB642 /* OAI_AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */; };
 		1DF1A41E162C369E00F49666 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A41D162C369E00F49666 /* UIKit.framework */; };
 		1DF1A420162C369E00F49666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A41F162C369E00F49666 /* Foundation.framework */; };
 		1DF1A422162C369E00F49666 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A421162C369E00F49666 /* CoreGraphics.framework */; };
@@ -23,6 +24,13 @@
 		1DF1A444162C36A000F49666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A41F162C369E00F49666 /* Foundation.framework */; };
 		1DF1A44C162C36A000F49666 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1DF1A44A162C36A000F49666 /* InfoPlist.strings */; };
 		1DF1A44F162C36A000F49666 /* Site_Inspection_ReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A44E162C36A000F49666 /* Site_Inspection_ReportTests.m */; };
+		1DF1A459162C36DD00F49666 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A458162C36DD00F49666 /* QuartzCore.framework */; };
+		1DF1A45F162C371300F49666 /* OAI_FormLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A45E162C371300F49666 /* OAI_FormLabel.m */; };
+		1DF1A462162C372500F49666 /* OAI_TitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A461162C372500F49666 /* OAI_TitleLabel.m */; };
+		1DF1A465162C373B00F49666 /* OAI_FormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A464162C373B00F49666 /* OAI_FormTextField.m */; };
+		1DF1A468162C375F00F49666 /* OAI_Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A467162C375F00F49666 /* OAI_Section.m */; };
+		1DF1A46B162C377200F49666 /* OAI_Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A46A162C377200F49666 /* OAI_Form.m */; };
+		1DF1A46E162C379100F49666 /* OAI_ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1A46D162C379100F49666 /* OAI_ColorManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1DAE8292162C509C00CEB642 /* OAI_AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_AnimationManager.h; sourceTree = "<group>"; };
+		1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_AnimationManager.m; sourceTree = "<group>"; };
 		1DF1A419162C369E00F49666 /* Site Inspection Report.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Site Inspection Report.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF1A41D162C369E00F49666 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1DF1A41F162C369E00F49666 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,6 +68,19 @@
 		1DF1A44B162C36A000F49666 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1DF1A44D162C36A000F49666 /* Site_Inspection_ReportTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Site_Inspection_ReportTests.h; sourceTree = "<group>"; };
 		1DF1A44E162C36A000F49666 /* Site_Inspection_ReportTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Site_Inspection_ReportTests.m; sourceTree = "<group>"; };
+		1DF1A458162C36DD00F49666 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1DF1A45D162C371300F49666 /* OAI_FormLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormLabel.h; sourceTree = "<group>"; };
+		1DF1A45E162C371300F49666 /* OAI_FormLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_FormLabel.m; sourceTree = "<group>"; };
+		1DF1A460162C372500F49666 /* OAI_TitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_TitleLabel.h; sourceTree = "<group>"; };
+		1DF1A461162C372500F49666 /* OAI_TitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_TitleLabel.m; sourceTree = "<group>"; };
+		1DF1A463162C373B00F49666 /* OAI_FormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormTextField.h; sourceTree = "<group>"; };
+		1DF1A464162C373B00F49666 /* OAI_FormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_FormTextField.m; sourceTree = "<group>"; };
+		1DF1A466162C375F00F49666 /* OAI_Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_Section.h; sourceTree = "<group>"; };
+		1DF1A467162C375F00F49666 /* OAI_Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_Section.m; sourceTree = "<group>"; };
+		1DF1A469162C377200F49666 /* OAI_Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_Form.h; sourceTree = "<group>"; };
+		1DF1A46A162C377200F49666 /* OAI_Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_Form.m; sourceTree = "<group>"; };
+		1DF1A46C162C379100F49666 /* OAI_ColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_ColorManager.h; sourceTree = "<group>"; };
+		1DF1A46D162C379100F49666 /* OAI_ColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_ColorManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DF1A459162C36DD00F49666 /* QuartzCore.framework in Frameworks */,
 				1DF1A41E162C369E00F49666 /* UIKit.framework in Frameworks */,
 				1DF1A420162C369E00F49666 /* Foundation.framework in Frameworks */,
 				1DF1A422162C369E00F49666 /* CoreGraphics.framework in Frameworks */,
@@ -106,6 +130,7 @@
 		1DF1A41C162C369E00F49666 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DF1A458162C36DD00F49666 /* QuartzCore.framework */,
 				1DF1A41D162C369E00F49666 /* UIKit.framework */,
 				1DF1A41F162C369E00F49666 /* Foundation.framework */,
 				1DF1A421162C369E00F49666 /* CoreGraphics.framework */,
@@ -117,6 +142,8 @@
 		1DF1A423162C369E00F49666 /* Site Inspection Report */ = {
 			isa = PBXGroup;
 			children = (
+				1DF1A45B162C36EF00F49666 /* Singleton */,
+				1DF1A45A162C36E900F49666 /* Classes */,
 				1DF1A42C162C369E00F49666 /* AppDelegate.h */,
 				1DF1A42D162C369E00F49666 /* AppDelegate.m */,
 				1DF1A435162C369F00F49666 /* ViewController.h */,
@@ -158,6 +185,42 @@
 				1DF1A44A162C36A000F49666 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1DF1A45A162C36E900F49666 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1DF1A469162C377200F49666 /* OAI_Form.h */,
+				1DF1A46A162C377200F49666 /* OAI_Form.m */,
+				1DF1A466162C375F00F49666 /* OAI_Section.h */,
+				1DF1A467162C375F00F49666 /* OAI_Section.m */,
+				1DF1A45C162C36F500F49666 /* Objects */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1DF1A45B162C36EF00F49666 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				1DAE8292162C509C00CEB642 /* OAI_AnimationManager.h */,
+				1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */,
+				1DF1A46C162C379100F49666 /* OAI_ColorManager.h */,
+				1DF1A46D162C379100F49666 /* OAI_ColorManager.m */,
+			);
+			name = Singleton;
+			sourceTree = "<group>";
+		};
+		1DF1A45C162C36F500F49666 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				1DF1A45D162C371300F49666 /* OAI_FormLabel.h */,
+				1DF1A45E162C371300F49666 /* OAI_FormLabel.m */,
+				1DF1A463162C373B00F49666 /* OAI_FormTextField.h */,
+				1DF1A464162C373B00F49666 /* OAI_FormTextField.m */,
+				1DF1A460162C372500F49666 /* OAI_TitleLabel.h */,
+				1DF1A461162C372500F49666 /* OAI_TitleLabel.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +336,13 @@
 				1DF1A42A162C369E00F49666 /* main.m in Sources */,
 				1DF1A42E162C369E00F49666 /* AppDelegate.m in Sources */,
 				1DF1A437162C369F00F49666 /* ViewController.m in Sources */,
+				1DF1A45F162C371300F49666 /* OAI_FormLabel.m in Sources */,
+				1DF1A462162C372500F49666 /* OAI_TitleLabel.m in Sources */,
+				1DF1A465162C373B00F49666 /* OAI_FormTextField.m in Sources */,
+				1DF1A468162C375F00F49666 /* OAI_Section.m in Sources */,
+				1DF1A46B162C377200F49666 /* OAI_Form.m in Sources */,
+				1DF1A46E162C379100F49666 /* OAI_ColorManager.m in Sources */,
+				1DAE8294162C509C00CEB642 /* OAI_AnimationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +518,7 @@
 				1DF1A454162C36A000F49666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1DF1A455162C36A000F49666 /* Build configuration list for PBXNativeTarget "Site Inspection ReportTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +527,7 @@
 				1DF1A457162C36A000F49666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

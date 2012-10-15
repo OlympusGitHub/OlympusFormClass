@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "OAI_Section.h"
+#import "OAI_ColorManager.h"
+#import "OAI_AnimationManager.h"
+
+@interface ViewController : UIViewController {
+    
+    OAI_ColorManager* colorManager;
+    OAI_AnimationManager* animationManager;
+    
+    NSMutableDictionary* sectionData;
+    
+}
+
+@property (nonatomic, retain) NSMutableDictionary* sectionData;
+
 
 @end
