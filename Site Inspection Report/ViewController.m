@@ -34,6 +34,8 @@
 
     NSArray* sectionTitles = [[NSArray alloc] initWithObjects:@"Site Inspection Report", @"EndoAlpha Solution", @"Hospital Information", @"General Description Of Site", @"Pre-Installation Requirement Checklist", @"Miscellaneous Information", nil];
     
+    //add section title to the section dict
+    
     float sectionX = 10.0;
     float sectionY = 5.0;
     float sectionSpacing = 5.0;
@@ -79,17 +81,82 @@
                 [NSString stringWithFormat:@"%f",thisSection.frame.origin.x], @"Section Original X",
                 [NSString stringWithFormat:@"%f",thisSection.frame.size.width], @"Section Original W",
                 [NSString stringWithFormat:@"%f",thisSection.frame.size.height], @"Section Original H",
+                [NSString stringWithFormat:@"%i",sectionTitles.count], @"Section Titles Count",
                 thisSection.subviews, @"Section Subviews",
+                thisSection, @"Section",
             nil];
         
-        [sectionData setObject:tempDictionary forKey:[NSString stringWithFormat:@"Section_%i", s]];
         
+        //set the form data
+        NSMutableDictionary* formData = [self setFormData:tagCount:thisSection];
+        
+        //add it to the temp dict
+        [tempDictionary setObject:formData forKey:@"Form Data"];
+        
+        //add this section dict to the sectionData dict
+        [sectionData setObject:tempDictionary forKey:[NSString stringWithFormat:@"Section_%i", s+1]];
+        
+        //store section data in animation manager
         animationManager.sectionData = sectionData;
         
         [self.view addSubview:thisSection];
     }
     
-   
+}
+
+#pragma mark Set Form Data
+- (NSMutableDictionary* ) setFormData : (int) thisTag : (OAI_Section* ) thisSection {
+    
+    //the form
+    OAI_Form* thisForm = [[OAI_Form alloc] init];
+    
+    //init dict
+    NSMutableDictionary* formData = [[NSMutableDictionary alloc] init];
+    
+    //dict to hold form elements
+    NSMutableArray* formElements = [[NSMutableArray alloc] init];
+    
+    //props
+    float formH;
+    float formW = thisSection.frame.size.width;
+    float formX = thisSection.frame.origin.x;
+    float formY = 0.0;
+    
+    //form elements
+    if (thisTag == 1) {
+        
+        [formElements addObject:[[NSArray alloc] initWithObjects:@"Project Number", @"Text Field", @"YES", nil]];
+        [formElements addObject:[[NSArray alloc] initWithObjects:@"Inspection Date", @"Text Field", @"YES", nil]];
+        [formElements addObject:[[NSArray alloc] initWithObjects:@"Prepared By", @"Text Field", @"YES", nil]];
+        [formElements addObject:[[NSArray alloc] initWithObjects:@"Revised Date", @"Text Field", @"NO", nil]];
+        [formElements addObject:[[NSArray alloc] initWithObjects:@"Revised By", @"Text Field", @"NO", nil]];
+    }
+        
+    //calculate form height
+    formH = formElements.count * 40;//30 height for each element, 10 spacing
+        
+    //populate form data dictionary
+    [formData setObject: thisSection.sectionTitle forKey:@"Form Title"];
+    [formData setObject:formElements forKey:@"Form Elements"];
+    [formData setObject:[NSString stringWithFormat:@"%f", formH] forKey:@"Form Height"];
+        
+    //pass the form data to the form
+    thisForm.formData = formData;
+        
+    //reset the form frame
+    CGRect formFrame = CGRectMake(formX, formY-formH, formW, formH);
+    thisForm.frame = formFrame;
+    
+    //set the form tag
+    thisForm.tag = thisTag + 100;
+        
+    //build the form
+    [thisForm buildForm];
+    
+    //add the form to the vc
+    [self.view addSubview:thisForm];
+                
+    return formData;
 }
 
 #pragma mark Notification Center

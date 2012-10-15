@@ -17,4 +17,8 @@
 
 - (void) checkToggleStatus : (UIView* ) thisSection : (NSString* ) thisTitle;
 
+- (void) openSection : (NSString* ) sectionTitle;
+
+- (void) closeSection : (NSString* ) sectionTitle;
+
 @end

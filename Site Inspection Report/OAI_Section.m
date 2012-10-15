@@ -10,7 +10,7 @@
 
 @implementation OAI_Section
 
-@synthesize sectionPadding, sectionTitle, sectionNeedsGesture, titleBarBGColor, titleBarBorderW, titleBarH, titleBarHasBorder, titleBarHasRadius, titleBarRadius, titleBarW, titleBarX, titleBarY, originalY;
+@synthesize sectionPadding, sectionTitle, sectionNeedsGesture, titleBarBGColor, titleBarBorderW, titleBarH, titleBarHasBorder, titleBarHasRadius, titleBarRadius, titleBarW, titleBarX, titleBarY, originalY, formH;
 
 - (id)initWithFrame:(CGRect)frame
 {

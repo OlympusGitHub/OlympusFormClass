@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OAI_Form : UIView
+#import "OAI_ColorManager.h"
+#import "OAI_FormLabel.h"
+#import "OAI_FormTextField.h"
+
+@interface OAI_Form : UIView {
+    
+    NSMutableDictionary* formData;
+    
+}
+
+@property (nonatomic, retain) NSMutableDictionary* formData;
+
+- (void) buildForm;
 
 @end

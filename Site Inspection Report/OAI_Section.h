@@ -31,6 +31,8 @@
     bool titleBarHasRadius;
     float titleBarRadius;
     
+    float formH;
+    
     OAI_ColorManager* colorManager;
     OAI_TitleLabel* lblSectionTitle;
     
@@ -49,6 +51,7 @@
 @property (nonatomic, retain) UIColor* titleBarBGColor;
 @property (nonatomic, assign) bool titleBarHasRadius;
 @property (nonatomic, assign) float titleBarRadius;
+@property (nonatomic, assign) float formH;
 
 - (void) buildSection;
 

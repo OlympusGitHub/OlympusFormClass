@@ -11,6 +11,7 @@
 #import "OAI_Section.h"
 #import "OAI_ColorManager.h"
 #import "OAI_AnimationManager.h"
+#import "OAI_Form.h"
 
 @interface ViewController : UIViewController {
     
@@ -23,5 +24,5 @@
 
 @property (nonatomic, retain) NSMutableDictionary* sectionData;
 
-
+- (NSMutableDictionary* ) setFormData : (int) thisTag : (UIView* ) thisSection;
 @end
