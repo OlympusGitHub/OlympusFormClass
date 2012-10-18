@@ -40,10 +40,23 @@
         NSString* thisSectionTitle = [thisSectionData objectForKey:@"Section Title"];
            
         if([thisTitle isEqualToString:thisSectionTitle]) {
-                   
-            if(thisSection.frame.origin.y == [[thisSectionData objectForKey:@"Section Original Y"] floatValue]) {
+            
+            //get the section's form data
+            NSDictionary* formData = [thisSectionData objectForKey:@"Form Data"];
+            
+            //get the form
+            UIView* thisSectionForm = [formData objectForKey:@"Form"];
+                               
+            if(thisSectionForm.frame.origin.y == [[formData objectForKey:@"Form Original Y"] floatValue]) {
+                
+                [self closeOpenSections : thisSection];
                        
                 [self openSection:[thisSectionData objectForKey:@"Section"]];
+            
+            } else {
+                
+                [self closeOpenSections: thisSection];
+                
             }
         }
     }
@@ -55,8 +68,9 @@
     //get all the views
     NSArray* allViews = [[sectionToOpen superview] subviews];
    
-    //set up an array to hold all the sections (not forms)
+    //set up an array to hold all the sections and one for forms
     NSMutableArray* allSections = [[NSMutableArray alloc]init];
+    NSMutableArray* allForms = [[NSMutableArray alloc]init];
     
     //get the section titles array count
     NSDictionary* firstSectionDict = [_sectionData objectForKey:@"Section_1"];
@@ -67,6 +81,8 @@
         int thisViewTag = thisSubview.tag;
         if(thisViewTag <= titleCount) {
             [allSections addObject:thisSubview];
+        } else if (thisViewTag > 100) {
+            [allForms addObject:thisSubview];
         }
     }
     
@@ -77,9 +93,12 @@
     //get it's opened and closed height
     NSDictionary* thisSectionDictionary = [_sectionData objectForKey:storedID];
     
-    float thisSectionOpenedHeight = 300.0; //this will be the form height + section height, stored in the dictionary, some how : D
+    //get the form data
+    NSDictionary* formData = [thisSectionDictionary objectForKey:@"Form Data"];
     
-    float thisSectionClosedHeight = [[thisSectionDictionary objectForKey:@"Section Original Y"] floatValue];
+    float formHeight = [[formData objectForKey:@"Form Height"]floatValue];
+    
+    float thisSectionOpenedHeight = formHeight+ 10.0;
     
     //determine where all the sections need to be moved too
     if (thisSectionID == 1) {
@@ -97,19 +116,16 @@
                 //animate the view
                 [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
                  
-                                 animations:^{
-                                     thisSection.frame = thisSectionFrame;
-                                 }
+                    animations:^{
+                        thisSection.frame = thisSectionFrame;
+                    }
                  
-                                 completion:^ (BOOL finished) {
-                                     
-                                 }
+                    completion:^ (BOOL finished) {
+                    }
                  ];
             }
         }
     
-    }
-    /*
     } else {
         
         float yDifference;
@@ -151,23 +167,176 @@
             //animate the sections
             [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
              
-                             animations:^{
-                                 thisSection.frame = thisSectionFrame;
-                             }
+                animations:^{
+                    thisSection.frame = thisSectionFrame;
+                }
              
-                             completion:^ (BOOL finished) {
-                             }
+                completion:^ (BOOL finished) {
+                }
              ];
             
         }
-      */  
+    
+    }
+    
+    //drop the form into place
+    int formToMoveTag = thisSectionID + 100;
+    
+    for(int f=0; f<allForms.count; f++) {
+        
+        UIView* thisForm = [allForms objectAtIndex:f];
+                 
+        int thisFormTag = thisForm.tag;
+        
+        if(thisFormTag == formToMoveTag) {
+         
+            CGRect thisFormFrame = thisForm.frame;
+            
+            thisFormFrame.origin.y = 50.0;
+            
+            //animate the form
+            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+             
+                animations:^{
+                    thisForm.frame = thisFormFrame;
+                    thisForm.alpha = 1.0;
+                }
+             
+                completion:^ (BOOL finished) {
+                }
+             ];
+            
+            break;
+            
+        }
+        
+    }
+    
     
     
     
 }
 
-- (void) closeSection : (NSString* ) sectionTitle {
+- (void) closeOpenSections : (UIView* ) thisSection {
     
+    //get all the views
+    NSArray* allViews = [[thisSection superview] subviews];
+    
+    //set up an array to hold all the sections and one for forms
+    NSMutableArray* allSections = [[NSMutableArray alloc]init];
+    NSMutableArray* allForms = [[NSMutableArray alloc]init];
+    
+    //get the section titles array count
+    NSDictionary* firstSectionDict = [_sectionData objectForKey:@"Section_1"];
+    int titleCount = [[firstSectionDict objectForKey:@"Section Titles Count"]intValue];
+    
+    //get all the section views
+    for(UIView* thisSubview in allViews) {
+        int thisViewTag = thisSubview.tag;
+        if(thisViewTag <= titleCount) {
+            [allSections addObject:thisSubview];
+        } else if (thisViewTag > 100) {
+            [allForms addObject:thisSubview];
+        }
+    }
+    
+    
+    //loop through the section views and check to see if any are out of place
+    for(int s=0; s<allSections.count; s++) {
+     
+        //get the section
+        UIView* thisSection = [allSections objectAtIndex:s];
+        
+        //get the section frame
+        CGRect thisSectionFrame = thisSection.frame;
+        
+        //get the subviews
+        NSArray* thisSectionSubviews = thisSection.subviews;
+        
+        //get the label title
+        UILabel* lblSectionTitle = [thisSectionSubviews objectAtIndex:0];
+        
+        NSString* sectionTitle = lblSectionTitle.text;
+        
+        NSLog(@"%@", sectionTitle);
+        
+        float originalY; 
+        
+        //loop through the sectionData and find a match based on title
+        for(NSString* thisSectionStr in _sectionData) {
+            
+            //get the section dict
+            NSDictionary* thisSectionData = [_sectionData objectForKey:thisSectionStr];
+            
+            //get the title
+            NSString* thisSectionTitle = [thisSectionData objectForKey:@"Section Title"];
+            
+            //compare for match
+            if([thisSectionTitle isEqualToString:sectionTitle]) {
+                
+                //get the original y
+                originalY = [[thisSectionData objectForKey:@"Section Original Y"] floatValue];
+                
+                //comapre to the current y
+                if (originalY != thisSectionFrame.origin.y) {
+                    
+                    //if different, reset to original y
+                    thisSectionFrame.origin.y = originalY;
+                    
+                    //animate the section closing
+                    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                     
+                        animations:^{
+                            thisSection.frame = thisSectionFrame;
+                        }
+                     
+                        completion:^ (BOOL finished) {
+                        }
+                    ];
+                    
+                    [self closeForm:allForms:thisSectionTitle];
+                    
+                }
+                break;
+            }
+        }
+        
+    }
+    
+}
+
+- (void) closeForm : (NSArray*) allForms : (NSString*) thisSectionTitle { 
+    
+    
+    //loop through the sectionData and find a match based on title
+    for(NSString* thisSectionStr in _sectionData) {
+        
+        //get the section dict
+        NSDictionary* thisSectionData = [_sectionData objectForKey:thisSectionStr];
+        
+        if ([thisSectionTitle isEqualToString:[thisSectionData objectForKey:@"Section Title"]]) {
+            
+            //get form dictionary
+            NSDictionary* thisSectionFormData = [thisSectionData objectForKey:@"Form Data"];
+            
+            //get the original y of the form
+            float formOriginalY = [[thisSectionFormData objectForKey:@"Form Original Y"] floatValue];
+            
+            //get the form
+            UIView* thisSectionForm = [thisSectionFormData objectForKey:@"Form"];
+            
+            //get the form's current frame
+            CGRect thisSectionFormFrame = thisSectionForm.frame;
+            
+            if (thisSectionFormFrame.origin.y != formOriginalY){
+                
+                NSLog(@"%@:form is open", thisSectionTitle);
+            }
+        }
+        
+        
+        
+    }//end loop through sections
 }
 
 

@@ -19,6 +19,8 @@
 
 - (void) openSection : (NSString* ) sectionTitle;
 
-- (void) closeSection : (NSString* ) sectionTitle;
+- (void) closeOpenSections : (UIView* ) thisSection;
+
+- (void) closeForm : (NSArray*) allForms : (NSString*) thisSectionTitle;
 
 @end

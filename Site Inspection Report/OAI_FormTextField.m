@@ -14,7 +14,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
+        self.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+        self.textColor = [UIColor blackColor];
+        self.borderStyle = UITextBorderStyleRoundedRect;
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }

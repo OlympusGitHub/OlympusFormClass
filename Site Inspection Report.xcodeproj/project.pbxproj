@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1DAE8294162C509C00CEB642 /* OAI_AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */; };
+		1DBB30F7162D93410081D41F /* OAI_FormCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB30F6162D93410081D41F /* OAI_FormCheckbox.m */; };
+		1DBB30FB162D9D510081D41F /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DBB30FA162D9D510081D41F /* checkmark.png */; };
+		1DBB30FE162DA9900081D41F /* OAI_FormMultiCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB30FD162DA98F0081D41F /* OAI_FormMultiCheckbox.m */; };
+		1DBC87CC162F124B0058BB4A /* OAI_Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC87CB162F124A0058BB4A /* OAI_Countries.m */; };
+		1DBC87D0162F14350058BB4A /* OAI_States.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC87CF162F14350058BB4A /* OAI_States.m */; };
 		1DF1A41E162C369E00F49666 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A41D162C369E00F49666 /* UIKit.framework */; };
 		1DF1A420162C369E00F49666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A41F162C369E00F49666 /* Foundation.framework */; };
 		1DF1A422162C369E00F49666 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF1A421162C369E00F49666 /* CoreGraphics.framework */; };
@@ -46,6 +51,15 @@
 /* Begin PBXFileReference section */
 		1DAE8292162C509C00CEB642 /* OAI_AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_AnimationManager.h; sourceTree = "<group>"; };
 		1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_AnimationManager.m; sourceTree = "<group>"; };
+		1DBB30F5162D93410081D41F /* OAI_FormCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormCheckbox.h; sourceTree = "<group>"; };
+		1DBB30F6162D93410081D41F /* OAI_FormCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_FormCheckbox.m; sourceTree = "<group>"; };
+		1DBB30FA162D9D510081D41F /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		1DBB30FC162DA98F0081D41F /* OAI_FormMultiCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormMultiCheckbox.h; sourceTree = "<group>"; };
+		1DBB30FD162DA98F0081D41F /* OAI_FormMultiCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_FormMultiCheckbox.m; sourceTree = "<group>"; };
+		1DBC87CA162F124A0058BB4A /* OAI_Countries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_Countries.h; sourceTree = "<group>"; };
+		1DBC87CB162F124A0058BB4A /* OAI_Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_Countries.m; sourceTree = "<group>"; };
+		1DBC87CE162F14350058BB4A /* OAI_States.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_States.h; sourceTree = "<group>"; };
+		1DBC87CF162F14350058BB4A /* OAI_States.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_States.m; sourceTree = "<group>"; };
 		1DF1A419162C369E00F49666 /* Site Inspection Report.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Site Inspection Report.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF1A41D162C369E00F49666 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1DF1A41F162C369E00F49666 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +122,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DBB30F9162D9D2D0081D41F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1DBB30FA162D9D510081D41F /* checkmark.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		1DF1A40E162C369E00F49666 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +164,7 @@
 		1DF1A423162C369E00F49666 /* Site Inspection Report */ = {
 			isa = PBXGroup;
 			children = (
+				1DBB30F9162D9D2D0081D41F /* Images */,
 				1DF1A45B162C36EF00F49666 /* Singleton */,
 				1DF1A45A162C36E900F49666 /* Classes */,
 				1DF1A42C162C369E00F49666 /* AppDelegate.h */,
@@ -195,6 +218,10 @@
 				1DF1A466162C375F00F49666 /* OAI_Section.h */,
 				1DF1A467162C375F00F49666 /* OAI_Section.m */,
 				1DF1A45C162C36F500F49666 /* Objects */,
+				1DBC87CA162F124A0058BB4A /* OAI_Countries.h */,
+				1DBC87CB162F124A0058BB4A /* OAI_Countries.m */,
+				1DBC87CE162F14350058BB4A /* OAI_States.h */,
+				1DBC87CF162F14350058BB4A /* OAI_States.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -219,6 +246,10 @@
 				1DF1A464162C373B00F49666 /* OAI_FormTextField.m */,
 				1DF1A460162C372500F49666 /* OAI_TitleLabel.h */,
 				1DF1A461162C372500F49666 /* OAI_TitleLabel.m */,
+				1DBB30F5162D93410081D41F /* OAI_FormCheckbox.h */,
+				1DBB30F6162D93410081D41F /* OAI_FormCheckbox.m */,
+				1DBB30FC162DA98F0081D41F /* OAI_FormMultiCheckbox.h */,
+				1DBB30FD162DA98F0081D41F /* OAI_FormMultiCheckbox.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -299,6 +330,7 @@
 				1DF1A432162C369F00F49666 /* Default@2x.png in Resources */,
 				1DF1A434162C369F00F49666 /* Default-568h@2x.png in Resources */,
 				1DF1A43A162C369F00F49666 /* ViewController.xib in Resources */,
+				1DBB30FB162D9D510081D41F /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +375,10 @@
 				1DF1A46B162C377200F49666 /* OAI_Form.m in Sources */,
 				1DF1A46E162C379100F49666 /* OAI_ColorManager.m in Sources */,
 				1DAE8294162C509C00CEB642 /* OAI_AnimationManager.m in Sources */,
+				1DBB30F7162D93410081D41F /* OAI_FormCheckbox.m in Sources */,
+				1DBB30FE162DA9900081D41F /* OAI_FormMultiCheckbox.m in Sources */,
+				1DBC87CC162F124B0058BB4A /* OAI_Countries.m in Sources */,
+				1DBC87D0162F14350058BB4A /* OAI_States.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +450,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -435,7 +471,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;

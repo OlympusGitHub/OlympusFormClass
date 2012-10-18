@@ -1,25 +1,23 @@
 //
-//  OAI_FormLabel.m
+//  OAI_FormMultiCheckbox.m
 //  Site Inspection Report
 //
-//  Created by Steven Suranie on 10/15/12.
+//  Created by Steven Suranie on 10/16/12.
 //  Copyright (c) 2012 Olympus America. All rights reserved.
 //
 
-#import "OAI_FormLabel.h"
+#import "OAI_FormMultiCheckbox.h"
 
-@implementation OAI_FormLabel
+@implementation OAI_FormMultiCheckbox
 
-@synthesize hasInset;
+@synthesize elementData, isChecked, checkboxName, maxWidth, startX;
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
+    
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-        self.textColor = [UIColor blackColor];
-        self.backgroundColor = [UIColor clearColor];
+        colorManager = [[OAI_ColorManager alloc] init];
     }
     return self;
 }

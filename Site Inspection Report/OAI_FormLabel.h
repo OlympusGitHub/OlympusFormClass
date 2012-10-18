@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OAI_FormLabel : UILabel
+@interface OAI_FormLabel : UILabel {
+    
+    bool hasInset;
+    
+}
+
+@property (nonatomic, assign) bool hasInset;
+
 
 @end

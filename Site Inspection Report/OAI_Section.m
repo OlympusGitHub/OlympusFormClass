@@ -26,9 +26,9 @@
 
 - (void) buildSection {
     
+    
     if (titleBarHasBorder) {
-        self.layer.borderColor = [colorManager setColor:08.0 :25.0 :102.0]
-        .CGColor;
+        self.layer.borderColor = [colorManager setColor:08.0 :25.0 :102.0].CGColor;
         self.layer.borderWidth = 1.0;
     }
     
@@ -38,12 +38,13 @@
     
     if (sectionNeedsGesture) {
         
-             //tap gesture is for each section so we can click on it
+        //tap gesture is for each section so we can click on it
         UITapGestureRecognizer *sectionTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkToggleStatus:)];
         
         //add the gesture
         [self addGestureRecognizer:sectionTap];
     }
+   
    
     OAI_TitleLabel* thisTitle = [[OAI_TitleLabel alloc] initWithFrame:CGRectMake(titleBarX, titleBarY, titleBarW, titleBarH)];
     thisTitle.text = sectionTitle;
@@ -51,10 +52,11 @@
     
     
     [self addSubview:thisTitle];
+     
 }
 
 - (void) checkToggleStatus : (UIGestureRecognizer*) recognizer {
-    
+   
     //get the view
     UIView* thisSection = recognizer.view;
     
