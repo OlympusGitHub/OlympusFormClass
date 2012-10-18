@@ -208,6 +208,8 @@
     //build the form
     [thisForm buildForm];
     
+    thisForm.alpha = 0.0;
+    
     //add the form to the vc
     [self.view addSubview:thisForm];
     

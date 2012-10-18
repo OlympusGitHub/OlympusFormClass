@@ -199,10 +199,21 @@
              
                 animations:^{
                     thisForm.frame = thisFormFrame;
-                    thisForm.alpha = 1.0;
                 }
              
                 completion:^ (BOOL finished) {
+                    
+                    //animate the form
+                    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                     
+                                     animations:^{
+                                         thisForm.alpha = 1.0;
+                                     }
+                     
+                                     completion:^ (BOOL finished) {
+                                         
+                                     }
+                     ];
                 }
              ];
             
@@ -240,10 +251,9 @@
         }
     }
     
-    
     //loop through the section views and check to see if any are out of place
     for(int s=0; s<allSections.count; s++) {
-     
+        
         //get the section
         UIView* thisSection = [allSections objectAtIndex:s];
         
@@ -258,8 +268,6 @@
         
         NSString* sectionTitle = lblSectionTitle.text;
         
-        NSLog(@"%@", sectionTitle);
-        
         float originalY; 
         
         //loop through the sectionData and find a match based on title
@@ -270,17 +278,29 @@
             
             //get the title
             NSString* thisSectionTitle = [thisSectionData objectForKey:@"Section Title"];
-            
-            //compare for match
+                        
+            //compare titles for match
             if([thisSectionTitle isEqualToString:sectionTitle]) {
                 
                 //get the original y
                 originalY = [[thisSectionData objectForKey:@"Section Original Y"] floatValue];
                 
-                //comapre to the current y
-                if (originalY != thisSectionFrame.origin.y) {
+                //get form data
+                NSDictionary* thisSectionFormData = [thisSectionData objectForKey:@"Form Data"];
+                
+                //get the original y of the form
+                float formOriginalY = [[thisSectionFormData objectForKey:@"Form Original Y"] floatValue];
+                
+                //get the form
+                UIView* thisSectionForm = [thisSectionFormData objectForKey:@"Form"];
+                
+                //get the form's current frame
+                CGRect thisSectionFormFrame = thisSectionForm.frame;
+                                
+                //compare the current Y to the original Y of section and form
+                if (originalY != thisSectionFrame.origin.y || thisSectionFormFrame.origin.y != formOriginalY) {
                     
-                    //if different, reset to original y
+                    //if different, reset section y to original y
                     thisSectionFrame.origin.y = originalY;
                     
                     //animate the section closing
@@ -294,6 +314,7 @@
                         }
                     ];
                     
+                    //pass section to form close method
                     [self closeForm:allForms:thisSectionTitle];
                     
                 }
@@ -330,7 +351,29 @@
             
             if (thisSectionFormFrame.origin.y != formOriginalY){
                 
-                NSLog(@"%@:form is open", thisSectionTitle);
+                thisSectionFormFrame.origin.y = formOriginalY;
+                
+                //animate the section closing
+                [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                 
+                    animations:^{
+                        thisSectionForm.alpha = 0.0;
+                    }
+                 
+                    completion:^ (BOOL finished) {
+                        
+                        //animate the section closing
+                        [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                         
+                            animations:^{
+                                thisSectionForm.frame = thisSectionFormFrame;
+                            }
+                         
+                            completion:^ (BOOL finished) {
+                            }
+                         ];
+                    }
+                 ];
             }
         }
         
