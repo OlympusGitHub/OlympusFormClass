@@ -98,6 +98,46 @@
             sectionFrame.size.width = self.frame.size.width-10.0;
             thisFormLabel.frame = sectionFrame;
             
+            //see if it needs a button
+            bool hasButton = [thisFormElement objectAtIndex:5];
+            
+            if (hasButton) {
+            
+                UIButton* addHospitalRoom = [UIButton buttonWithType:UIButtonTypeContactAdd];
+                
+                //get frame
+                CGRect addHospRoomFrame = addHospitalRoom.frame;
+                
+                addHospRoomFrame.origin.x = thisFormLabel.frame.size.width - (addHospRoomFrame.size.width + 10.0);
+                addHospRoomFrame.origin.y = thisFormLabel.frame.origin.y;
+                
+                addHospitalRoom.frame = addHospRoomFrame;
+                
+                [self addSubview:addHospitalRoom];
+                
+            }
+            
+            
+        } else if ([formElementType isEqualToString:@"SubSection"]) {
+            
+            //reset the section to a blue background
+            thisFormLabel.backgroundColor = [colorManager setColor:220.0:156.0:50.0];
+            
+            //reset font to white
+            thisFormLabel.textColor = [colorManager setColor:08.0 :25.0 :102.0];
+            
+            //give the view a border
+            thisFormLabel.layer.borderWidth = 1.0;
+            thisFormLabel.layer.borderColor = [colorManager setColor:08.0 :25.0 :102.0].CGColor;
+
+            //let the class know it needs insets
+            thisFormLabel.hasInset = YES;
+            
+            //reset width to full width of form
+            CGRect sectionFrame = thisFormLabel.frame;
+            sectionFrame.size.width = self.frame.size.width-10.0;
+            thisFormLabel.frame = sectionFrame;
+            
         } else if ([formElementType isEqualToString:@"Text Field"]) {
             
             //get the text field size

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D174DC3163062FF0084BE43 /* OAI_FormSectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D174DC2163062FF0084BE43 /* OAI_FormSectionButton.m */; };
+		1D174DC7163063100084BE43 /* OAI_FormButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D174DC6163063100084BE43 /* OAI_FormButton.m */; };
 		1DAE8294162C509C00CEB642 /* OAI_AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */; };
 		1DBB30F7162D93410081D41F /* OAI_FormCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB30F6162D93410081D41F /* OAI_FormCheckbox.m */; };
 		1DBB30FB162D9D510081D41F /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DBB30FA162D9D510081D41F /* checkmark.png */; };
@@ -49,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D174DC1163062FF0084BE43 /* OAI_FormSectionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormSectionButton.h; sourceTree = "<group>"; };
+		1D174DC2163062FF0084BE43 /* OAI_FormSectionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_FormSectionButton.m; sourceTree = "<group>"; };
+		1D174DC5163063100084BE43 /* OAI_FormButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormButton.h; sourceTree = "<group>"; };
+		1D174DC6163063100084BE43 /* OAI_FormButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_FormButton.m; sourceTree = "<group>"; };
 		1DAE8292162C509C00CEB642 /* OAI_AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_AnimationManager.h; sourceTree = "<group>"; };
 		1DAE8293162C509C00CEB642 /* OAI_AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAI_AnimationManager.m; sourceTree = "<group>"; };
 		1DBB30F5162D93410081D41F /* OAI_FormCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAI_FormCheckbox.h; sourceTree = "<group>"; };
@@ -250,6 +256,10 @@
 				1DBB30F6162D93410081D41F /* OAI_FormCheckbox.m */,
 				1DBB30FC162DA98F0081D41F /* OAI_FormMultiCheckbox.h */,
 				1DBB30FD162DA98F0081D41F /* OAI_FormMultiCheckbox.m */,
+				1D174DC1163062FF0084BE43 /* OAI_FormSectionButton.h */,
+				1D174DC2163062FF0084BE43 /* OAI_FormSectionButton.m */,
+				1D174DC5163063100084BE43 /* OAI_FormButton.h */,
+				1D174DC6163063100084BE43 /* OAI_FormButton.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -379,6 +389,8 @@
 				1DBB30FE162DA9900081D41F /* OAI_FormMultiCheckbox.m in Sources */,
 				1DBC87CC162F124B0058BB4A /* OAI_Countries.m in Sources */,
 				1DBC87D0162F14350058BB4A /* OAI_States.m in Sources */,
+				1D174DC3163062FF0084BE43 /* OAI_FormSectionButton.m in Sources */,
+				1D174DC7163063100084BE43 /* OAI_FormButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
