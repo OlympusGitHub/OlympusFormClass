@@ -10,6 +10,8 @@
 
 @implementation OAI_FormTextField
 
+@synthesize isEmail, isPhone;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

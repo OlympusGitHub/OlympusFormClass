@@ -111,10 +111,7 @@
     OAI_Form* thisForm = [[OAI_Form alloc] init];
     
     //init dict
-    NSMutableDictionary* formData = [[NSMutableDictionary alloc] init];
-    
-    //dict to hold form elements
-    NSMutableArray* formElements = [[NSMutableArray alloc] init];
+    NSMutableDictionary* formData = [[NSMutableDictionary alloc] init];    
     
     //props
     float formH;
@@ -125,8 +122,10 @@
     //form elements
     if (thisTag == 1) {
         
-        [formElements addObject:@"Site Inspecition Report"];
+        //dict to hold form elements
+        NSMutableArray* formElements = [[NSMutableArray alloc] init];
         
+        [formElements addObject:@"Site Inspecition Report"];
         
          [formElements addObject:
           [[NSMutableDictionary alloc] initWithObjectsAndKeys:
@@ -172,41 +171,231 @@
             @"Medium", @"Field Size",
           nil]];
                 
-        //calculate form height
-        formH = formElements.count-1 * 40;//30 height for each element, 10 spacing
+        [formData setObject:formElements forKey:@"Form Elements"];
         
-    
     } else if (thisTag == 2) {
         
-        /*[formElements addObject:[[NSArray alloc] initWithObjects:@"EndoAlpha Control:", @"MultiCheckbox", @"YES", [[NSArray alloc] initWithObjects:@"AVP", @"UCES-3",nil], nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"EndoAlpha Video Management:", @"MultiCheckbox", @"YES", [[NSArray alloc] initWithObjects:@"HD Recording", @"SD Recording", nil], nil]];
+        //dict to hold form elements
+        NSMutableArray* formElements = [[NSMutableArray alloc] init];
         
-        //calculate form height
-        formH = formElements.count * 40;//30 height for each element, 10 spacing*/
+        [formElements addObject:@"EndoAlpha Solution"];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Endo Alpha Control:", @"Field Name",
+                @"MultiCheckbox", @"Field Type",
+                @"YES", @"isRequired",
+                @"N/A", @"Field Size",
+                [[NSArray alloc] initWithObjects:@"AVP", @"UCES-3",nil], @"Checkboxes",
+             nil]
+         ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Endo Alpha Control:", @"Field Name",
+                @"MultiCheckbox", @"Field Type",
+                @"YES", @"isRequired",
+                @"N/A", @"Field Size",
+                [[NSArray alloc] initWithObjects:@"HD Recording", @"SD Recording",nil], @"Checkboxes",
+             nil]
+         ];
+        
+        
+        [formData setObject:formElements forKey:@"Form Elements"];
+       
     
     } else if (thisTag == 3) {
         
-        /*[formElements addObject:[[NSArray alloc] initWithObjects:@" Hospital  Address", @"Section", @"NO", @"Width", @"1", @"NO", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Hospital  Name:", @"Text Field", @"YES", @"Width", @"1", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Address:", @"Text Field", @"YES", @"Width", @"1", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"City:", @"Text Field", @"YES", @"Large", @"1", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"State:", @"Table", @"YES", @"Small", @"1", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Zip:", @"Text Field", @"YES", @"Small", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Country:", @"Text Field", @"YES", @"Medium", @"1", nil]];
+        //dict to hold form elements
+        NSMutableArray* formElements = [[NSMutableArray alloc] init];
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@" Relevant  Contacts:", @"Section", @"NO", @"Width", @"1", @"NO", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Hospital Management:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Hospital Project Manager:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Facility Management:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Biomedical Department:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"IT Department:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Shipping Receiving:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Boom Manufacturer:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Other (Specify):", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
+        [formElements addObject:@"Hospital Information"];
         
-        formH = 790;*/
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Hospital  Address:", @"Field Name",
+                @"Section", @"Field Type",
+                @"N/A", @"isRequired",
+                @"Width", @"Field Size",
+                @"2", @"Text Indent",
+             nil]
+        ];
         
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Hospital  Name:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"YES", @"isRequired",
+                @"Width", @"Field Size",
+             nil]
+        ];
         
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Address:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"YES", @"isRequired",
+                @"Width", @"Field Size",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"City:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"YES", @"isRequired",
+                @"Large", @"Field Size",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"State:", @"Field Name",
+                @"Table", @"Field Type",
+                @"YES", @"isRequired",
+                @"Small", @"Field Size",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Zip:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"YES", @"isRequired",
+                @"Small", @"Field Size",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Country:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"YES", @"isRequired",
+                @"Medium", @"Field Size",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Relevant Contacts:", @"Field Name",
+                @"Section", @"Field Type",
+                @"N/A", @"isRequired",
+                @"Width", @"Field Size",
+                @"2", @"Text Indent",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Hospital Management:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+            nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Hospital Project Manager:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Facility Management:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Biomedical Department:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+         ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Biomedical Department:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"IT Department:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Shipping Receiving:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+         ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Shipping Receiving:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+         ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Boom Manufaturer:", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+             nil]
+        ];
+        
+        [formElements addObject:
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                @"Other (Specify):", @"Field Name",
+                @"Text Field", @"Field Type",
+                @"NO", @"isRequired",
+                @"Medium", @"Field Size",
+                @"YES", @"isContact",
+                [[NSArray alloc] initWithObjects:@"Phone:", @"Email:", nil], @"ContactData",
+            nil]
+        ];
+        
+        [formData setObject:formElements forKey:@"Form Elements"];
+                
     } else if (thisTag == 4) {
         
         /*[formElements addObject:[[NSArray alloc] initWithObjects:@" Operating Room:", @"Section", @"NO", @"Width", @"1", @"YES", @"+", nil]];
@@ -253,7 +442,28 @@
         
     //populate form data dictionary
     [formData setObject: thisSection.sectionTitle forKey:@"Form Title"];
-    [formData setObject:formElements forKey:@"Form Elements"];
+    
+    NSArray* elements = [formData objectForKey:@"Form Elements"];
+    for(int e=0; e<elements.count; e++) {
+        
+        if (e>0) { 
+            NSDictionary* thisElement = [elements objectAtIndex:e];
+            NSString* thisElementType = [thisElement objectForKey:@"Field Type"];
+        
+            if ([thisElementType isEqualToString:@"Table"]) {
+                formH = formH + 120.0;
+            } else {
+                bool isContact = [thisElement objectForKey:@"isContact"];
+                
+                if (isContact) {
+                    formH = formH + 75.0;
+                } else { 
+                    formH = formH + 40.0;
+                }
+            }
+        }
+    }
+    
     [formData setObject:[NSString stringWithFormat:@"%f", formH] forKey:@"Form Height"];
     [formData setObject:[NSString stringWithFormat:@"%f", formY-formH] forKey:@"Form Original Y"];
     [formData setObject:thisForm forKey:@"Form"];

@@ -28,13 +28,15 @@
     NSArray* states;
     NSArray* countries;
     
+    NSArray* checkboxes;
+    
 }
 
 @property (nonatomic, retain) NSMutableDictionary* formData;
 
 - (void) buildForm;
 
-- (void) buildFormElement : (NSString* ) elementName : (NSString* ) elementType : (OAI_FormLabel*) thisFormLabel : (NSString* ) elementWidth : (float) maxLabelWidth : (CGSize) labelSize : (float) formElementX2 : (float) formElementY : (bool) isRequired;
+- (void) buildFormElement : (NSString* ) elementName : (NSString* ) elementType : (OAI_FormLabel*) thisFormLabel : (NSString* ) elementWidth : (float) maxLabelWidth : (CGSize) labelSize : (float) formElementX2 : (float) formElementY : (bool) isRequired : (bool) isContact;
 
 
 

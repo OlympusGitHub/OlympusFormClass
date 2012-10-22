@@ -22,6 +22,8 @@
         states = [[NSArray alloc] init];
         countries = [[NSArray alloc] init];
         
+        checkboxes = [[NSArray alloc] init];
+        
         
     }
     return self;
@@ -35,7 +37,7 @@
     //set some props
     float formElementX1 = 5.0;
     float formElementX2 = 165.0;
-    float formElementY = 5.0;
+    float formElementY = 10.0;
     CGSize labelSize;
     float maxLabelWidth = 0.0;
     
@@ -72,9 +74,14 @@
             //get the element type
             NSString* elementType = [thisFormElementData objectForKey:@"Field Type"];
             
+            //if element == multicheckbox get the checkbox data
+            checkboxes = [thisFormElementData objectForKey:@"Checkboxes"];
+            
             //get required status
             bool isRequired = [thisFormElementData objectForKey:@"isRequired"];
             
+            bool isContact = [thisFormElementData objectForKey:@"isContact"];
+                        
             //get the element width
             NSString* elementWidth = [thisFormElementData objectForKey:@"Field Size"];
             
@@ -91,46 +98,13 @@
                 }
             }
             
-            
+            [self buildFormElement:elementName :elementType :thisFormLabel :elementWidth :maxLabelWidth :labelSize :formElementX2 :formElementY :isRequired : isContact];
+                        
         }
-        
-        
     }
-    
-    
-        
-        
-        /*
-        //fix the x location of all the elements
-        NSArray* formElements = self.subviews;
-        for(UIView* thisFormElement in formElements) {
-            
-            if([thisFormElement isMemberOfClass:[OAI_FormTextField class]]) {
-                
-                CGRect thisFormElementFrame = thisFormElement.frame;
-                thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
-                thisFormElement.frame = thisFormElementFrame;
-            
-            } else if ([thisFormElement isMemberOfClass:[OAI_FormMultiCheckbox class]]){
-                
-                CGRect thisFormElementFrame = thisFormElement.frame;
-                thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
-                thisFormElement.frame = thisFormElementFrame;
-                
-            } else if ([thisFormElement isMemberOfClass:[UITableView class]]) {
-                
-                CGRect thisFormElementFrame = thisFormElement.frame;
-                thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
-                thisFormElement.frame = thisFormElementFrame;
-                
-            }
-        }
-        
-        
-    }*/
 }
 
-- (void) buildFormElement : (NSString* ) elementName : (NSString* ) elementType : (OAI_FormLabel*) thisFormLabel : (NSString* ) elementWidth : (float) maxLabelWidth : (CGSize) labelSize : (float) formElementX2 : (float) formElementY : (bool) isRequired {
+- (void) buildFormElement : (NSString* ) elementName : (NSString* ) elementType : (OAI_FormLabel*) thisFormLabel : (NSString* ) elementWidth : (float) maxLabelWidth : (CGSize) labelSize : (float) formElementX2 : (float) formElementY : (bool) isRequired : (bool) isContact {
     
     if([elementType isEqualToString:@"Section"]) {
         
@@ -203,15 +177,43 @@
             textFieldW = 100.0;
         }
         
-        
-        OAI_FormTextField* thisTextField = [[OAI_FormTextField alloc] initWithFrame:CGRectMake(labelSize.width+20.0, formElementY, textFieldW, 30.0)];
-        
-        //check to see if it is required
-        if (isRequired) {
-            thisTextField.placeholder = @"Required";
+        //add contact fields 
+        if (isContact) {
+            
+            UIView* contactFields = [[UIView alloc]initWithFrame:CGRectMake(labelSize.width+20.0, formElementY, (textFieldW*2) + 10.0, 30.0)];
+            
+            OAI_FormTextField* thisTextField = [[OAI_FormTextField alloc] initWithFrame:CGRectMake(0.0, 0.0, textFieldW, 30.0)];
+            
+            thisTextField.placeholder = @"Phone:";
+            thisTextField.isPhone = YES;
+            
+            
+            [contactFields addSubview:thisTextField];
+            
+            OAI_FormTextField* thisOtherTextField = [[OAI_FormTextField alloc] initWithFrame:CGRectMake(textFieldW+10.0, 0.0, textFieldW, 30.0)];
+            
+            thisOtherTextField.placeholder = @"Email:";
+            thisOtherTextField.isEmail = YES;
+            
+            [contactFields addSubview:thisOtherTextField];
+            
+            [self addSubview:contactFields];
+            
+            
+        } else { 
+            
+            OAI_FormTextField* thisTextField = [[OAI_FormTextField alloc] initWithFrame:CGRectMake(labelSize.width+20.0, formElementY, textFieldW, 30.0)];
+            
+            //check to see if it is required
+            if (isRequired == YES) {
+                thisTextField.placeholder = @"Required";
+                
+                [self addSubview:thisTextField];
+            }
         }
         
-        [self addSubview:thisTextField];
+        
+        
         
     } else if ([elementType isEqualToString:@"Checkbox"]) {
         
@@ -237,10 +239,7 @@
         float maxWidth = 0.0;
         float checkboxX = 0.0;
         float checkboxY = formElementY;
-        
-        //get the checkboxes
-        /*NSArray* checkboxes = [thisFormElement objectAtIndex:3];
-        
+                
         //loop
         for(int c=0; c<checkboxes.count; c++) {
             
@@ -294,7 +293,7 @@
         checkboxSet.frame = checkboxSetFrame;
         
         [self addSubview:checkboxSet];
-         */
+         
         
     } else if ([elementType isEqualToString:@"Table"]) {
         
@@ -330,8 +329,40 @@
             //display it
             [self addSubview:tblStates];
         }
-        
     }
+    
+    //fix the x location of all the elements
+    NSArray* formElements = self.subviews;
+    for(UIView* thisFormElement in formElements) {
+        
+        
+        //reset the x position of all the elements (it's all the same but I am distinguishing class just for future stuff that might need it
+        if([thisFormElement isMemberOfClass:[OAI_FormTextField class]]) {
+            
+            CGRect thisFormElementFrame = thisFormElement.frame;
+            thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
+            thisFormElement.frame = thisFormElementFrame;
+            
+        } else if ([thisFormElement isMemberOfClass:[OAI_FormMultiCheckbox class]]){
+            
+            CGRect thisFormElementFrame = thisFormElement.frame;
+            thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
+            thisFormElement.frame = thisFormElementFrame;
+            
+        } else if ([thisFormElement isMemberOfClass:[UITableView class]]) {
+            
+            CGRect thisFormElementFrame = thisFormElement.frame;
+            thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
+            thisFormElement.frame = thisFormElementFrame;
+            
+        } else if ([thisFormElement isMemberOfClass:[UIView class]]) {
+            
+            CGRect thisFormElementFrame = thisFormElement.frame;
+            thisFormElementFrame.origin.x = maxLabelWidth + 20.0;
+            thisFormElement.frame = thisFormElementFrame;
+        }
+    }
+
 }
 
 - (void) toggleCheckbox : (UITapGestureRecognizer* ) recognizer {

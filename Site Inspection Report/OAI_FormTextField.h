@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OAI_FormTextField : UITextField
+@interface OAI_FormTextField : UITextField {
+    
+    bool isPhone;
+    bool isEmail;
+    
+}
+
+@property (nonatomic, assign) bool isPhone;
+@property (nonatomic, assign) bool isEmail;
 
 @end
