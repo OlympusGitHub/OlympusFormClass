@@ -125,26 +125,68 @@
     //form elements
     if (thisTag == 1) {
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Project Number:", @"Text Field", @"YES", @"Medium", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Inspection Date:", @"Text Field", @"YES", @"Medium", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Prepared By:", @"Text Field", @"YES", @"Medium", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Revised Date:", @"Text Field", @"NO", @"Medium", nil]];
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Revised By:", @"Text Field", @"NO", @"Medium", nil]];
+        [formElements addObject:@"Site Inspecition Report"];
         
+        
+         [formElements addObject:
+          [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+            @"Project Number:", @"Field Name",
+            @"Text Field", @"Field Type",
+            @"YES", @"isRequired",
+            @"Medium", @"Field Size",
+          nil]];
+        
+        
+         [formElements addObject:
+          [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+            @"Inspection Date:", @"Field Name",
+            @"Text Field", @"Field Type",
+            @"YES", @"isRequired",
+            @"Medium", @"Field Size",
+          nil]];
+        
+        
+         [formElements addObject:
+          [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+            @"Prepared By:", @"Field Name",
+            @"Text Field", @"Field Type",
+            @"YES", @"isRequired",
+            @"Medium", @"Field Size",
+          nil]];
+        
+        
+         [formElements addObject:
+          [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+            @"Revised Date:", @"Field Name",
+            @"Text Field", @"Field Type",
+            @"YES", @"isRequired",
+            @"Medium", @"Field Size",
+          nil]];
+        
+        
+         [formElements addObject:
+          [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+            @"Revised By:", @"Field Name",
+            @"Text Field", @"Field Type",
+            @"YES", @"isRequired",
+            @"Medium", @"Field Size",
+          nil]];
+                
         //calculate form height
-        formH = formElements.count * 40;//30 height for each element, 10 spacing
+        formH = formElements.count-1 * 40;//30 height for each element, 10 spacing
+        
     
     } else if (thisTag == 2) {
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"EndoAlpha Control:", @"MultiCheckbox", @"YES", [[NSArray alloc] initWithObjects:@"AVP", @"UCES-3",nil], nil]];
+        /*[formElements addObject:[[NSArray alloc] initWithObjects:@"EndoAlpha Control:", @"MultiCheckbox", @"YES", [[NSArray alloc] initWithObjects:@"AVP", @"UCES-3",nil], nil]];
         [formElements addObject:[[NSArray alloc] initWithObjects:@"EndoAlpha Video Management:", @"MultiCheckbox", @"YES", [[NSArray alloc] initWithObjects:@"HD Recording", @"SD Recording", nil], nil]];
         
         //calculate form height
-        formH = formElements.count * 40;//30 height for each element, 10 spacing
+        formH = formElements.count * 40;//30 height for each element, 10 spacing*/
     
     } else if (thisTag == 3) {
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@" Hospital  Address", @"Section", @"NO", @"Width", @"1", @"NO", nil]];
+        /*[formElements addObject:[[NSArray alloc] initWithObjects:@" Hospital  Address", @"Section", @"NO", @"Width", @"1", @"NO", nil]];
         [formElements addObject:[[NSArray alloc] initWithObjects:@"Hospital  Name:", @"Text Field", @"YES", @"Width", @"1", nil]];
         [formElements addObject:[[NSArray alloc] initWithObjects:@"Address:", @"Text Field", @"YES", @"Width", @"1", nil]];
         [formElements addObject:[[NSArray alloc] initWithObjects:@"City:", @"Text Field", @"YES", @"Large", @"1", nil]];
@@ -162,33 +204,50 @@
         [formElements addObject:[[NSArray alloc] initWithObjects:@"Boom Manufacturer:", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
         [formElements addObject:[[NSArray alloc] initWithObjects:@"Other (Specify):", @"Text Field", @"NO", @"Medium", @"1", @"isContact", nil]];
         
-        formH = 790;
+        formH = 790;*/
         
         
     } else if (thisTag == 4) {
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@" Operating Room:", @"Section", @"NO", @"Width", @"1", @"YES", @"+", nil]];
+        /*[formElements addObject:[[NSArray alloc] initWithObjects:@" Operating Room:", @"Section", @"NO", @"Width", @"1", @"YES", @"+", nil]];
         
         [formElements addObject:[[NSArray alloc] initWithObjects:@" 1st Operating Room Dimensions:", @"SubSection", @"NO", @"Width", @"5", @"NO", nil]];
+    
+        [[NSArray alloc] initWithObjects:
+            @"2",
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                [[NSArray alloc] initWithObjects:@"Length (ft):", @"Text Field", @"YES", @"Medium", nil], @"Col1:1",
+                [[NSArray alloc] initWithObjects:@"Width (ft):", @"Text Field", @"YES", @"Medium", nil], @"Col1:2",
+            nil],
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                [[NSArray alloc] initWithObjects:@"Height (ft):", @"Text Field", @"YES", @"Medium", nil], @"Col1:1",
+                [[NSArray alloc] initWithObjects:@"Width (ft):", @"Text Field", @"YES", @"Medium", nil], @"Col1:2",
+             nil],
+         nil];
         
-        //[formElements addObject:]
+            [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                [[NSArray alloc] initWithObjects:@"Length (ft):", @"Text Field", @"YES", @"Medium"], @"Col1:1"],
+                [[NSArray alloc] initWithObjects:@"Width (ft):", @"Text Field", @"YES", @"Medium"], @"Col1:2"],
+            nil]
+            
+      
         
         //calculate form height
-        formH = formElements.count * 40;//30 height for each element, 10 spacing
+        formH = formElements.count * 40;//30 height for each element, 10 spacing*/
         
     } else if (thisTag == 5) {
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Project Number:", @"Text Field", @"YES", @"Medium", nil]];
+        /*[formElements addObject:[[NSArray alloc] initWithObjects:@"Project Number:", @"Text Field", @"YES", @"Medium", nil]];
         
         //calculate form height
-        formH = formElements.count * 40;//30 height for each element, 10 spacing
+        formH = formElements.count * 40;//30 height for each element, 10 spacing*/
         
     } else if (thisTag == 6) {
         
-        [formElements addObject:[[NSArray alloc] initWithObjects:@"Project Number:", @"Text Field", @"YES", @"Medium", nil]];
+        /*[formElements addObject:[[NSArray alloc] initWithObjects:@"Project Number:", @"Text Field", @"YES", @"Medium", nil]];
         
         //calculate form height
-        formH = formElements.count * 40;//30 height for each element, 10 spacing
+        formH = formElements.count * 40;//30 height for each element, 10 spacing*/
     
     }
         

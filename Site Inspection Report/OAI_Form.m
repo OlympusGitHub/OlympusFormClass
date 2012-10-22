@@ -39,250 +39,68 @@
     CGSize labelSize;
     float maxLabelWidth = 0.0;
     
-    //loop through elements
+    //loop through the elements
     for(int fe=0; fe<formElements.count; fe++) {
         
-        //increment y
-        if (fe>0) {
+        //increment y (skipping 0 because it contains the form title)
+        if (fe>1) {
             formElementY = formElementY + 40.0;
         }
         
-        //get the element data
-        NSArray* thisFormElement = [formElements objectAtIndex:fe];
-        NSString* formElementName = [thisFormElement objectAtIndex:0];
-        NSString* formElementType = [thisFormElement objectAtIndex:1];
-        NSString* formElementIsRequired = [thisFormElement objectAtIndex:2];
-        
-        //add some extra padding to top of table
-        if ([formElementType isEqualToString:@"Table"]) {
-            formElementY = formElementY + 20.0;
-        }
-        
-        //check what the previous element was to add additional padding after table
-        if(fe>0) { 
-            NSArray* thePreviousFormElement = [formElements objectAtIndex:fe-1];
-            if ([[thePreviousFormElement objectAtIndex:1] isEqualToString:@"Table"]) {
-                formElementY = formElementY + 70.0;
-            }
-        }
-        
-        //get width of label
-        labelSize = [formElementName sizeWithFont:[UIFont fontWithName:@"Helvetica" size:18.0]];
-        
-        //increase maxLabelWidth if needed
-        if (labelSize.width > maxLabelWidth) {
-            maxLabelWidth = labelSize.width;
-        }
-        
-        //build the element label
-        OAI_FormLabel* thisFormLabel = [[OAI_FormLabel alloc] initWithFrame:CGRectMake(formElementX1, formElementY, labelSize.width, 30.0)];
-        thisFormLabel.text = formElementName;
-        
-        [self addSubview:thisFormLabel];
-        
-        //build the element
-        
-        if([formElementType isEqualToString:@"Section"]) {
+        //get the element dictionary
+        if (fe > 0) { 
+            NSDictionary* thisFormElementData = [formElements objectAtIndex:fe];
             
-            //reset the section to a blue background
-            thisFormLabel.backgroundColor = [colorManager setColor:08.0:25.0:102.0];
+            //get the element title
+            NSString* elementName = [thisFormElementData objectForKey:@"Field Name"];
             
-            //reset font to white
-            thisFormLabel.textColor = [UIColor whiteColor];
+            //get width of label
+            labelSize = [elementName sizeWithFont:[UIFont fontWithName:@"Helvetica" size:18.0]];
             
-            //let the class know it needs insets
-            thisFormLabel.hasInset = YES;
-                    
-            //reset width to full width of form
-            CGRect sectionFrame = thisFormLabel.frame;
-            sectionFrame.size.width = self.frame.size.width-10.0;
-            thisFormLabel.frame = sectionFrame;
-            
-            //see if it needs a button
-            bool hasButton = [thisFormElement objectAtIndex:5];
-            
-            if (hasButton) {
-            
-                UIButton* addHospitalRoom = [UIButton buttonWithType:UIButtonTypeContactAdd];
-                
-                //get frame
-                CGRect addHospRoomFrame = addHospitalRoom.frame;
-                
-                addHospRoomFrame.origin.x = thisFormLabel.frame.size.width - (addHospRoomFrame.size.width + 10.0);
-                addHospRoomFrame.origin.y = thisFormLabel.frame.origin.y;
-                
-                addHospitalRoom.frame = addHospRoomFrame;
-                
-                [self addSubview:addHospitalRoom];
-                
+            //increase maxLabelWidth if needed
+            if (labelSize.width > maxLabelWidth) {
+                maxLabelWidth = labelSize.width;
             }
             
+            //build the element label
+            OAI_FormLabel* thisFormLabel = [[OAI_FormLabel alloc] initWithFrame:CGRectMake(formElementX1, formElementY, labelSize.width, 30.0)];
+            thisFormLabel.text = elementName;
             
-        } else if ([formElementType isEqualToString:@"SubSection"]) {
-            
-            //reset the section to a blue background
-            thisFormLabel.backgroundColor = [colorManager setColor:220.0:156.0:50.0];
-            
-            //reset font to white
-            thisFormLabel.textColor = [colorManager setColor:08.0 :25.0 :102.0];
-            
-            //give the view a border
-            thisFormLabel.layer.borderWidth = 1.0;
-            thisFormLabel.layer.borderColor = [colorManager setColor:08.0 :25.0 :102.0].CGColor;
+            //add label to the formview
+            [self addSubview:thisFormLabel];
 
-            //let the class know it needs insets
-            thisFormLabel.hasInset = YES;
+            //get the element type
+            NSString* elementType = [thisFormElementData objectForKey:@"Field Type"];
             
-            //reset width to full width of form
-            CGRect sectionFrame = thisFormLabel.frame;
-            sectionFrame.size.width = self.frame.size.width-10.0;
-            thisFormLabel.frame = sectionFrame;
+            //get required status
+            bool isRequired = [thisFormElementData objectForKey:@"isRequired"];
             
-        } else if ([formElementType isEqualToString:@"Text Field"]) {
+            //get the element width
+            NSString* elementWidth = [thisFormElementData objectForKey:@"Field Size"];
             
-            //get the text field size
-            NSString* textFieldSize = [thisFormElement objectAtIndex:3];
-            
-            //reset the text field size
-            float textFieldW;
-            if ([textFieldSize isEqualToString:@"Width"]) {
-                textFieldW = self.frame.size.width-(maxLabelWidth + 100.0);
-            } else if ([textFieldSize isEqualToString:@"Large"]) {
-                textFieldW = 300.0;
-            } else if ([textFieldSize isEqualToString:@"Medium"]) {
-                textFieldW = 200.0;
-            } else if ([textFieldSize isEqualToString:@"Small"]) {
-                textFieldW = 100.0;
-            }
-             
-            
-            OAI_FormTextField* thisTextField = [[OAI_FormTextField alloc] initWithFrame:CGRectMake(labelSize.width+20.0, formElementY, textFieldW, 30.0)];
-            
-            //check to see if it is required
-            if ([formElementIsRequired isEqualToString:@"YES"]) {
-                thisTextField.placeholder = @"Required";
+            //add some extra padding to top of table
+            if ([elementType isEqualToString:@"Table"]) {
+                formElementY = formElementY + 20.0;
             }
             
-            [self addSubview:thisTextField];
-        
-        } else if ([formElementType isEqualToString:@"Checkbox"]) {
-            
-            OAI_FormCheckbox* thisCheckbox = [[OAI_FormCheckbox alloc] initWithFrame:CGRectMake(labelSize.width + 20.0, formElementY + 5.0, 20.0, 20.0)];
-            
-            //give the checkbox an id
-            thisCheckbox.checkboxName = formElementName;
-            
-            //each checkbox needs a gesture
-            UITapGestureRecognizer *checkboxTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleCheckbox:)];
-            
-            //add the gesture
-            [thisCheckbox addGestureRecognizer:checkboxTap];
-            
-            [self addSubview:thisCheckbox];
-                
-        } else if ([formElementType isEqualToString:@"MultiCheckbox"]) {
-            
-            //instantiate the checkbox
-            OAI_FormMultiCheckbox* checkboxSet = [[OAI_FormMultiCheckbox alloc] init];
-            
-            //set up a max width holder
-            float maxWidth = 0.0;
-            float checkboxX = 0.0;
-            float checkboxY = formElementY;
-            
-            //get the checkboxes
-            NSArray* checkboxes = [thisFormElement objectAtIndex:3];
-            
-            //loop
-            for(int c=0; c<checkboxes.count; c++) {
-                
-                //increment x
-                if (c>0) {
-                    checkboxX = checkboxX + maxWidth;
+            //add extra padding to top of element if previous element was a table
+            if (fe >1) {
+                NSDictionary* previousElement = [formElements objectAtIndex:fe-1];
+                if([[previousElement objectForKey:@"Field Type"] isEqualToString:@"Table"]) {
+                   formElementY = formElementY + 70.0;
                 }
-                
-                //get title
-                NSString* thisCheckBoxTitle = [checkboxes objectAtIndex:c];
-                
-                //get size of text
-                CGSize thisCheckBoxTitleSize = [thisCheckBoxTitle sizeWithFont:[UIFont fontWithName:@"Helvetica" size:18.0]];
-                
-                //increment maxWidth
-                maxWidth = maxWidth + thisCheckBoxTitleSize.width + 5.0;
-                
-                //add label
-                OAI_FormLabel* thisCheckBoxLabel = [[OAI_FormLabel alloc]initWithFrame:CGRectMake(checkboxX, 0,  thisCheckBoxTitleSize.width, 30.0)];
-                
-                thisCheckBoxLabel.text = thisCheckBoxTitle;
-                
-                [checkboxSet addSubview:thisCheckBoxLabel];
-                
-                //add checkbox
-                OAI_FormCheckbox* thisCheckBox = [[OAI_FormCheckbox alloc] initWithFrame:CGRectMake(maxWidth, 5.0, 20.0, 20.0)];
-                
-                //each checkbox needs a gesture
-                UITapGestureRecognizer *checkboxTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleCheckbox:)];
-                
-                //add the gesture
-                [thisCheckBox addGestureRecognizer:checkboxTap];
-                
-                //set id
-                thisCheckBox.checkboxName = thisCheckBoxTitle;
-                
-                [checkboxSet addSubview:thisCheckBox];
-                
-                //increment maxWidth
-                maxWidth = maxWidth + thisCheckBox.frame.size.width + 20.0;
             }
             
-            
-            //reset the checkboxset frame
-            CGRect checkboxSetFrame = checkboxSet.frame;
-            checkboxSetFrame.origin.x = labelSize.width + 20.0;
-            checkboxSetFrame.origin.y = thisFormLabel.frame.origin.y;
-            checkboxSetFrame.size.width = maxWidth;
-            checkboxSetFrame.size.height = 30.0;
-            checkboxSet.frame = checkboxSetFrame;
-            
-            [self addSubview:checkboxSet];
-            
-        } else if ([formElementType isEqualToString:@"Table"]) {
-            
-            //instantiate the standard objects
-            statesManager = [[OAI_States alloc] init];
-            countriesManager = [[OAI_Countries alloc]init];
-            
-            //insta
-            states = [statesManager getStates];
-            countries = [countriesManager getCountries];
-            
-           
-            //check to see if it is a standard table
-            if([formElementName isEqualToString:@"State:"]) {
-                
-                //init a table
-                UITableView* tblStates = [[UITableView alloc] initWithFrame:CGRectMake(labelSize.width+20.0, formElementY,300.0, 94.0) style:UITableViewStylePlain];
-                
-                tblStates.delegate = self;
-                tblStates.dataSource = self;
-                
-                //set the row height
-                tblStates.rowHeight = 30.0;
-                
-                //give it a border
-                tblStates.layer.borderWidth = 1.0;
-                
-                tblStates.layer.cornerRadius = 2.0;
-                
-                //tag it
-                tblStates.tag = 501;
-                
-                //display it
-                [self addSubview:tblStates];
-            }
             
         }
         
+        
+    }
+    
+    
+        
+        
+        /*
         //fix the x location of all the elements
         NSArray* formElements = self.subviews;
         for(UIView* thisFormElement in formElements) {
@@ -308,6 +126,210 @@
             }
         }
         
+        
+    }*/
+}
+
+- (void) buildFormElement : (NSString* ) elementName : (NSString* ) elementType : (OAI_FormLabel*) thisFormLabel : (NSString* ) elementWidth : (float) maxLabelWidth : (CGSize) labelSize : (float) formElementX2 : (float) formElementY : (bool) isRequired {
+    
+    if([elementType isEqualToString:@"Section"]) {
+        
+        //reset the section to a blue background
+        thisFormLabel.backgroundColor = [colorManager setColor:08.0:25.0:102.0];
+        
+        //reset font to white
+        thisFormLabel.textColor = [UIColor whiteColor];
+        
+        //let the class know it needs insets
+        thisFormLabel.hasInset = YES;
+        
+        //reset width to full width of form
+        CGRect sectionFrame = thisFormLabel.frame;
+        sectionFrame.size.width = self.frame.size.width-10.0;
+        thisFormLabel.frame = sectionFrame;
+        
+        /*
+        //see if it needs a button
+        bool hasButton = [thisFormElement objectAtIndex:5];
+        
+        if (hasButton) {
+            
+            UIButton* addHospitalRoom = [UIButton buttonWithType:UIButtonTypeContactAdd];
+            
+            //get frame
+            CGRect addHospRoomFrame = addHospitalRoom.frame;
+            
+            addHospRoomFrame.origin.x = thisFormLabel.frame.size.width - (addHospRoomFrame.size.width + 10.0);
+            addHospRoomFrame.origin.y = thisFormLabel.frame.origin.y;
+            
+            addHospitalRoom.frame = addHospRoomFrame;
+            
+            [self addSubview:addHospitalRoom];
+            
+        }*/
+        
+        
+    } else if ([elementType isEqualToString:@"SubSection"]) {
+        
+        //reset the section to a blue background
+        thisFormLabel.backgroundColor = [colorManager setColor:220.0:156.0:50.0];
+        
+        //reset font to white
+        thisFormLabel.textColor = [colorManager setColor:08.0 :25.0 :102.0];
+        
+        //give the view a border
+        thisFormLabel.layer.borderWidth = 1.0;
+        thisFormLabel.layer.borderColor = [colorManager setColor:08.0 :25.0 :102.0].CGColor;
+        
+        //let the class know it needs insets
+        thisFormLabel.hasInset = YES;
+        
+        //reset width to full width of form
+        CGRect sectionFrame = thisFormLabel.frame;
+        sectionFrame.size.width = self.frame.size.width-10.0;
+        thisFormLabel.frame = sectionFrame;
+        
+    } else if ([elementType isEqualToString:@"Text Field"]) {
+                
+        //reset the text field size
+        float textFieldW;
+        if ([elementWidth isEqualToString:@"Width"]) {
+            textFieldW = self.frame.size.width-(maxLabelWidth + 100.0);
+        } else if ([elementWidth isEqualToString:@"Large"]) {
+            textFieldW = 300.0;
+        } else if ([elementWidth isEqualToString:@"Medium"]) {
+            textFieldW = 200.0;
+        } else if ([elementWidth isEqualToString:@"Small"]) {
+            textFieldW = 100.0;
+        }
+        
+        
+        OAI_FormTextField* thisTextField = [[OAI_FormTextField alloc] initWithFrame:CGRectMake(labelSize.width+20.0, formElementY, textFieldW, 30.0)];
+        
+        //check to see if it is required
+        if (isRequired) {
+            thisTextField.placeholder = @"Required";
+        }
+        
+        [self addSubview:thisTextField];
+        
+    } else if ([elementType isEqualToString:@"Checkbox"]) {
+        
+        OAI_FormCheckbox* thisCheckbox = [[OAI_FormCheckbox alloc] initWithFrame:CGRectMake(labelSize.width + 20.0, formElementY + 5.0, 20.0, 20.0)];
+        
+        //give the checkbox an id
+        thisCheckbox.checkboxName = elementName;
+        
+        //each checkbox needs a gesture
+        UITapGestureRecognizer *checkboxTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleCheckbox:)];
+        
+        //add the gesture
+        [thisCheckbox addGestureRecognizer:checkboxTap];
+        
+        [self addSubview:thisCheckbox];
+        
+    } else if ([elementType isEqualToString:@"MultiCheckbox"]) {
+        
+        //instantiate the checkbox
+        OAI_FormMultiCheckbox* checkboxSet = [[OAI_FormMultiCheckbox alloc] init];
+        
+        //set up a max width holder
+        float maxWidth = 0.0;
+        float checkboxX = 0.0;
+        float checkboxY = formElementY;
+        
+        //get the checkboxes
+        /*NSArray* checkboxes = [thisFormElement objectAtIndex:3];
+        
+        //loop
+        for(int c=0; c<checkboxes.count; c++) {
+            
+            //increment x
+            if (c>0) {
+                checkboxX = checkboxX + maxWidth;
+            }
+            
+            //get title
+            NSString* thisCheckBoxTitle = [checkboxes objectAtIndex:c];
+            
+            //get size of text
+            CGSize thisCheckBoxTitleSize = [thisCheckBoxTitle sizeWithFont:[UIFont fontWithName:@"Helvetica" size:18.0]];
+            
+            //increment maxWidth
+            maxWidth = maxWidth + thisCheckBoxTitleSize.width + 5.0;
+            
+            //add label
+            OAI_FormLabel* thisCheckBoxLabel = [[OAI_FormLabel alloc]initWithFrame:CGRectMake(checkboxX, 0,  thisCheckBoxTitleSize.width, 30.0)];
+            
+            thisCheckBoxLabel.text = thisCheckBoxTitle;
+            
+            [checkboxSet addSubview:thisCheckBoxLabel];
+            
+            //add checkbox
+            OAI_FormCheckbox* thisCheckBox = [[OAI_FormCheckbox alloc] initWithFrame:CGRectMake(maxWidth, 5.0, 20.0, 20.0)];
+            
+            //each checkbox needs a gesture
+            UITapGestureRecognizer *checkboxTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleCheckbox:)];
+            
+            //add the gesture
+            [thisCheckBox addGestureRecognizer:checkboxTap];
+            
+            //set id
+            thisCheckBox.checkboxName = thisCheckBoxTitle;
+            
+            [checkboxSet addSubview:thisCheckBox];
+            
+            //increment maxWidth
+            maxWidth = maxWidth + thisCheckBox.frame.size.width + 20.0;
+         
+        }
+        
+        
+        //reset the checkboxset frame
+        CGRect checkboxSetFrame = checkboxSet.frame;
+        checkboxSetFrame.origin.x = labelSize.width + 20.0;
+        checkboxSetFrame.origin.y = thisFormLabel.frame.origin.y;
+        checkboxSetFrame.size.width = maxWidth;
+        checkboxSetFrame.size.height = 30.0;
+        checkboxSet.frame = checkboxSetFrame;
+        
+        [self addSubview:checkboxSet];
+         */
+        
+    } else if ([elementType isEqualToString:@"Table"]) {
+        
+        //instantiate the standard objects
+        statesManager = [[OAI_States alloc] init];
+        countriesManager = [[OAI_Countries alloc]init];
+        
+        //insta
+        states = [statesManager getStates];
+        countries = [countriesManager getCountries];
+        
+        
+        //check to see if it is a standard table
+        if([elementName isEqualToString:@"State:"]) {
+            
+            //init a table
+            UITableView* tblStates = [[UITableView alloc] initWithFrame:CGRectMake(labelSize.width+20.0, formElementY,300.0, 94.0) style:UITableViewStylePlain];
+            
+            tblStates.delegate = self;
+            tblStates.dataSource = self;
+            
+            //set the row height
+            tblStates.rowHeight = 30.0;
+            
+            //give it a border
+            tblStates.layer.borderWidth = 1.0;
+            
+            tblStates.layer.cornerRadius = 2.0;
+            
+            //tag it
+            tblStates.tag = 501;
+            
+            //display it
+            [self addSubview:tblStates];
+        }
         
     }
 }
